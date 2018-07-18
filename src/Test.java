@@ -37,7 +37,7 @@ public class Test {
 class Person {
 
 	Person() {
-		System.out.println("Person constructor...");
+		System.out.println("New Person constructor...");
 	}
 
 	void walk() {
