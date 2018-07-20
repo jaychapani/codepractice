@@ -80,9 +80,10 @@ public class LinkedList {
 //		list2.push(3);
 //		list2.push(1);
 
-		System.out.println("Given Linked List1 " + Integer.toBinaryString(5));
+		System.out.println("Given Linked List1 ");
 		list1.printList();
-		list1.arrangeList(list1.head);
+		//list1.arrangeList(list1.head);
+		list1.head = list1.reversLinkedList(list1.head);
 		list1.printList();
 
 		//System.out.println("Given Linked List2");
@@ -94,6 +95,19 @@ public class LinkedList {
 		//LinkedList l = mergedList(list1.head, list2.head);
 		//l.printList();
 
+	}
+	
+	private Node reversLinkedList(Node head) {
+		Node current = head, prev = null, next = null;
+		
+		while(current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		
+		return prev;
 	}
 	
 	private void arrangeList(Node head) {
