@@ -82,8 +82,8 @@ public class LinkedList {
 
 		System.out.println("Given Linked List1 ");
 		list1.printList();
-		//list1.arrangeList(list1.head);
-		list1.head = list1.reversLinkedList(list1.head);
+		list1.arrangeList(list1.head);
+		//list1.head = list1.reversLinkedList(list1.head);
 		list1.printList();
 
 		//System.out.println("Given Linked List2");
@@ -113,7 +113,6 @@ public class LinkedList {
 	private void arrangeList(Node head) {
 		Node one = head;
 		Node two = head.next;
-		Node oneh = one;
 		Node twoh = two;
 
 		while (one.next != null && two.next != null) {
