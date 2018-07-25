@@ -1,4 +1,4 @@
-package DSProblems;
+package dsproblems;
 
 import java.util.Arrays;
 
