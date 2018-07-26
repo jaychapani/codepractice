@@ -49,6 +49,21 @@ public class TrieTreeArray {
 
 		return hasChildren;
 	}
+	
+	private static boolean hasMoreThanOneChild(TrieNode t) {
+
+		int childCnt = 0;
+
+		for (int index = 0; index < ALFA_SIZE; index++) {
+			if (t != null && t.children[index] != null) {
+				childCnt++;
+				if(childCnt > 1)
+					return true;
+			}
+		}
+
+		return false;
+	}
 
 	private static void search(String s) {
 
@@ -59,7 +74,24 @@ public class TrieTreeArray {
 			return;
 		}
 
-		smartSuggest(t, s);
+		// smartSuggest(t, s);
+		
+		longestPrefix(t, s);
+
+	}
+
+	private static void longestPrefix(TrieNode t, String s) {
+
+		if (hasMoreThanOneChild(t)) {
+			System.out.println(s);
+			return;
+		}
+
+		for (int i = 0; i < ALFA_SIZE; i++) {
+			if (t.children[i] != null) {
+				longestPrefix(t.children[i], s + Character.toString((char) (i + 'a')));
+			}
+		}
 
 	}
 
@@ -130,7 +162,7 @@ public class TrieTreeArray {
 
 	public static void main(String[] args) {
 
-		String keys[] = { "the", "a", "there", "by", "by", "answer", "any", "by", "bye", "their" };
+		String keys[] = { "flower", "flow", "floight" };
 
 		root = new TrieNode();
 
@@ -138,9 +170,9 @@ public class TrieTreeArray {
 			insert(keys[i]);
 		}
 
-		// search("a");
+		search(Character.toString(keys[0].charAt(0)));
 
-		System.out.println(maxCount(root, "").toString());
+		// System.out.println(maxCount(root, "").toString());
 	}
 
 }
