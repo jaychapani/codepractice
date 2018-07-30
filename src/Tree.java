@@ -41,7 +41,7 @@ public class Tree {
 		// System.out.println("\nKth smallest element :: ");
 		// kthSmallElement(root);
 
-		System.out.println((3 ^ 5) + " - " + (5 ^ 6) + " - " + (3 ^ 6));
+		//System.out.println((3 ^ 5) + " - " + (5 ^ 6) + " - " + (3 ^ 6));
 
 		morrisTrav(root);
 		correctTreeSwap(root);

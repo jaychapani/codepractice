@@ -23,27 +23,72 @@ public class BTree {
 		Node root = new Node(1);
 
 		root.left = new Node(2);
-		root.right = new Node(2);
-		root.left.left = new Node(3);
-		root.left.right = new Node(4);
-		root.right.left = new Node(4);
-		root.right.right = new Node(3);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
+		root.left.right = new Node(5);
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
 
-		int a[] = new int[] { 2, 3, 4, 5, 6, 7, 1, 8 };
+		// int a[] = new int[] { 2, 3, 4, 5, 6, 7, 1, 8 };
 
-		Node root1 = null;
-		
-		for (int i = 0; i < a.length; i++) {
-			root1 = insertBSTRec(root1, a[i]);
-		}
+		// Node root1 = null;
 
-		printInorder(root1);
+		// for (int i = 0; i < a.length; i++) {
+		// root1 = insertBSTRec(root1, a[i]);
+		// }
+
+		// printInorder(root1);
+
+		printCousin(root, root.left.left);
 
 		// System.out.println(isMirror(root, root));
 
 		// printLevelOrder(root);
 
 		// System.out.println(height(root));
+
+	}
+
+	private static void printCousin(Node root, Node n) {
+
+		if (root == null) {
+			System.out.println("No Cousins!!!");
+		}
+
+		Node current = null;
+
+		Queue<Node> q = new LinkedList<Node>();
+		boolean found = false;
+		q.add(root);
+
+		int size = 0;
+
+		while (!q.isEmpty() && !found) {
+
+			size = q.size();
+			while (size-- > 0) {
+
+				current = q.poll();
+
+				if (current.left == n || current.right == n) {
+					found = true;
+				} else {
+					if (current.left != null) {
+						q.add(current.left);
+					}
+					if (current.right != null) {
+						q.add(current.right);
+					}
+				}
+			}
+		}
+
+		if (q.size() == 0)
+			System.out.println("No Cousins!!!");
+
+		while (!q.isEmpty()) {
+			System.out.print(q.poll().data + " ");
+		}
 
 	}
 
