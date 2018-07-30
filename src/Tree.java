@@ -4,7 +4,7 @@ public class Tree {
 
 	public static void main(String[] args) {
 
-		Node root = new Node(30);
+		Node root = new Node(1);
 
 		// int a[] = new int[] { 15, 45, 20, 25, 32, 50, 55 };
 		//
@@ -13,12 +13,14 @@ public class Tree {
 		// insertNodeBST(root, i);
 		// }
 
-		root.left = new Node(10);
-		root.right = new Node(25);
-		root.left.left = new Node(8);
-		root.left.right = new Node(45);
-		root.right.left = new Node(32);
-		root.right.right = new Node(55);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
+		root.left.right = new Node(5);
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
+		root.left.left.left = new Node(2);
+		root.left.left.right = new Node(3);
 
 		// System.out.println("LCA :: " + findLCA(root,32,45).data);
 		//
@@ -36,12 +38,16 @@ public class Tree {
 		// System.out.println("InOrder Successor :: " + getIOSucc(root,
 		// 25).data);
 
-		// System.out.println("In Order Traversal :: ");
-		// inOrderTrav(root);
+		System.out.println("In Order Traversal :: ");
+		inOrderTrav(root);
 		// System.out.println("\nKth smallest element :: ");
 		// kthSmallElement(root);
+		//morrisTrav(root);
+		//correctTreeSwap(root);
+		//System.out.println("");
+		//morrisTrav(root);
 
-		System.out.println((3 ^ 5) + " - " + (5 ^ 6) + " - " + (3 ^ 6));
+		//System.out.println((3 ^ 5) + " - " + (5 ^ 6) + " - " + (3 ^ 6));
 
 		morrisTrav(root);
 		correctTreeSwap(root);
@@ -162,7 +168,7 @@ public class Tree {
 			return;
 
 		inOrderTrav(root.left);
-		System.out.print(root.data + " ");
+		System.out.println(root.data + " [ " + Math.abs((root.left != null ? root.left.data : 0) - (root.right != null ? root.right.data : 0)) + " ]");
 		inOrderTrav(root.right);
 	}
 
