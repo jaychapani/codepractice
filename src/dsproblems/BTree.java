@@ -39,7 +39,7 @@ public class BTree {
 
 		// printInorder(root1);
 
-		printCousin(root, root.left.left);
+		// printCousin(root, root.left.left);
 
 		// System.out.println(isMirror(root, root));
 
@@ -47,6 +47,40 @@ public class BTree {
 
 		// System.out.println(height(root));
 
+		btToDll(root);
+		
+	}
+
+    static Node head  = null;
+	
+	private static Node btToDll(Node root) {
+
+		Stack<Node> s = new Stack<Node>();
+		Node current = root;
+		Node prev = null;
+
+		while (current != null || !s.isEmpty()) {
+
+			while (current != null) {
+				s.push(current);
+				current = current.left;
+			}
+
+			current = s.pop();
+
+			if (head == null) {
+				head = current;
+				current.left = null;
+			} else {
+				prev.right = current;
+				current.left = prev;
+			}
+
+			prev = current;
+			current = current.right;
+		}
+
+		return head;
 	}
 
 	private static void printCousin(Node root, Node n) {
