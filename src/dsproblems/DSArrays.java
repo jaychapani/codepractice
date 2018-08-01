@@ -2,6 +2,7 @@ package dsproblems;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import java.util.TreeMap;
 
 public class DSArrays {
@@ -24,6 +25,7 @@ public class DSArrays {
 		
 		System.out.println(String.format("%02d",Integer.parseInt(Integer.toBinaryString(0))));
 
+		Stack<Integer> s = null;
 	}
 
 	public static int trap(int[] height) {

@@ -13,12 +13,28 @@ public class Solution {
 		Map<Integer, Integer> m = new HashMap();
 
 		int[] nums = new int[] { -2, -5 };
-
+		
+		System.out.println(Arrays.toString(nums));
+		
+		swap(nums, 0, 1);
+		
+		System.out.println(Arrays.toString(nums));
+		
+		System.out.println(10 ^ 20);
+		
 		// System.out.println(maxSubArray(nums));
 
 		// System.out.println("Output: " + longestCommonPrefix(new String[] { "a" }));
 
-		System.out.println("Rotation count :: " + openLock(new String[] {"0201","0101","0102","1212","2002"},"0202"));
+		// System.out.println("Rotation count :: " + openLock(new String[] {"0201","0101","0102","1212","2002"},"0202"));
+	}
+
+	private static void swap(int[] nums, int i, int j) {
+		
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+		
 	}
 
 	public static int openLock(String[] deadends, String target) {

@@ -39,7 +39,11 @@ public class BTree {
 
 		// printInorder(root1);
 
+<<<<<<< HEAD
 		//printCousin(root, root.left.left);
+=======
+		// printCousin(root, root.left.left);
+>>>>>>> branch 'master' of https://github.com/jaychapani/codepractice.git
 
 		// System.out.println(isMirror(root, root));
 
@@ -82,6 +86,7 @@ public class BTree {
 		}
 
 		return head;
+<<<<<<< HEAD
 	}
 
 	private static int printKthSmallestElement(Node root, int k) {
@@ -104,6 +109,8 @@ public class BTree {
 		k = printKthSmallestElement(root.right, k);
 
 		return k;
+=======
+>>>>>>> branch 'master' of https://github.com/jaychapani/codepractice.git
 	}
 
 	private static void printCousin(Node root, Node n) {
