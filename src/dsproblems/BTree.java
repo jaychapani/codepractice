@@ -20,14 +20,14 @@ public class BTree {
 
 	public static void main(String[] args) {
 
-		Node root = new Node(1);
+		Node root = new Node(20);
 
-		root.left = new Node(2);
-		root.right = new Node(3);
+		root.left = new Node(8);
+		root.right = new Node(22);
 		root.left.left = new Node(4);
-		root.left.right = new Node(5);
-		root.right.left = new Node(6);
-		root.right.right = new Node(7);
+		root.left.right = new Node(12);
+		root.left.right.left = new Node(10);
+		root.left.right.right = new Node(14);
 
 		// int a[] = new int[] { 2, 3, 4, 5, 6, 7, 1, 8 };
 
@@ -39,13 +39,18 @@ public class BTree {
 
 		// printInorder(root1);
 
+<<<<<<< HEAD
+		//printCousin(root, root.left.left);
+=======
 		// printCousin(root, root.left.left);
+>>>>>>> branch 'master' of https://github.com/jaychapani/codepractice.git
 
 		// System.out.println(isMirror(root, root));
 
 		// printLevelOrder(root);
 
 		// System.out.println(height(root));
+		printKthSmallestElement(root,3);
 
 		btToDll(root);
 		
@@ -81,6 +86,31 @@ public class BTree {
 		}
 
 		return head;
+<<<<<<< HEAD
+	}
+
+	private static int printKthSmallestElement(Node root, int k) {
+		
+		System.out.println("debug:: data :: " + (root != null ? root.data : "NULL") + " k::" + k);
+		
+		if (root == null || k == Integer.MIN_VALUE)
+			return k;
+
+		k = printKthSmallestElement(root.left, k);
+		k--;
+		if (k == 0) {
+			System.out.println(root.data);
+			return Integer.MIN_VALUE;
+		}
+		if (k < 0) {
+			System.out.println("No such node exists!!");
+		}
+
+		k = printKthSmallestElement(root.right, k);
+
+		return k;
+=======
+>>>>>>> branch 'master' of https://github.com/jaychapani/codepractice.git
 	}
 
 	private static void printCousin(Node root, Node n) {
