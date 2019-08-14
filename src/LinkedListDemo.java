@@ -1,5 +1,5 @@
 
-public class LinkedList {
+public class LinkedListDemo {
 
 	Node head;
 
@@ -60,7 +60,7 @@ public class LinkedList {
 
 	public static void main(String[] args) {
 
-		LinkedList list1 = new LinkedList();
+		LinkedListDemo list1 = new LinkedListDemo();
 		//LinkedList list2 = new LinkedList();
 
 		/*
@@ -126,9 +126,9 @@ public class LinkedList {
 		one.next = twoh;
 	}
 
-	private static LinkedList mergedList(Node head1, Node head2) {
+	private static LinkedListDemo mergedList(Node head1, Node head2) {
 
-		LinkedList l = new LinkedList();
+		LinkedListDemo l = new LinkedListDemo();
 
 		while (head1 != null && head2 != null) {
 

@@ -162,7 +162,7 @@ public class TrieTreeArray {
 
 	public static void main(String[] args) {
 
-		String keys[] = { "flower", "flow", "floight" };
+		String keys[] = { "flow","flower","flag" };
 
 		root = new TrieNode();
 

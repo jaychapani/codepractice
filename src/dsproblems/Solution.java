@@ -1,40 +1,164 @@
 package dsproblems;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 
 public class Solution {
 
 	public static void main(String[] args) {
 
-		Map<Integer, Integer> m = new HashMap();
+		// Map<Integer, Integer> m = new HashMap();
 
-		int[] nums = new int[] { -2, -5 };
-		
-		System.out.println(Arrays.toString(nums));
-		
-		swap(nums, 0, 1);
-		
-		System.out.println(Arrays.toString(nums));
-		
-		System.out.println(10 ^ 20);
-		
+		// int[] nums = new int[] { -2, -5 };
+
+		// System.out.println(Arrays.toString(nums));
+
+		// swap(nums, 0, 1);
+
+		// System.out.println(Arrays.toString(nums));
+
+		// System.out.println(10 ^ 20);
+
 		// System.out.println(maxSubArray(nums));
 
-		// System.out.println("Output: " + longestCommonPrefix(new String[] { "a" }));
+		System.out.println("Output: " + longestCommonPrefix(new String[] { "abab","aba", "" }));
 
-		// System.out.println("Rotation count :: " + openLock(new String[] {"0201","0101","0102","1212","2002"},"0202"));
+		// System.out.println("Rotation count :: " + openLock(new String[]
+		// {"0201","0101","0102","1212","2002"},"0202"));
+
+		// System.out.println(getColumnNo("ABC"));
+
+		// System.out.println(decodeAtIndex("vk6u5xhq9v",554));
+		
+		// System.out.println(Arrays.toString(uncommonFromSentences("this is sweet app", "this is sour app")));
+		
+		//System.out.println(isValid("()"));
+	}
+	
+	public static boolean isValid(String s) {
+        if(s.length() < 2)
+            return false;
+            
+        Stack<Character> cs = new Stack<Character>();
+        
+        for(int i = 0; i < s.length(); i++){
+            
+            Character c = s.charAt(i);
+            
+            if(c == ')' && cs.pop() != '('){
+                return false;
+            }else if(c == '}' && cs.pop() != '{'){
+                return false;
+            }if(c == ']' && cs.pop() != '['){
+                return false;
+            }else if(c == '(' || c == '{' || c == '['){
+                cs.push(c);
+            }       
+        }
+        return cs.empty();
+    }
+
+	public static String[] uncommonFromSentences(String A, String B) {
+
+		String[] sa = A.split(" ");
+
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		
+		for (String s : sa) {
+			if (m.get(s) != null) {
+				int i = m.get(s);
+				m.put(s, ++i);
+			} else {
+				m.put(s, 1);
+			}
+		}
+
+		String[] sb = B.split(" ");
+
+		for (String s : sb) {
+			if (m.get(s) != null) {
+				int i = m.get(s);
+				m.put(s, ++i);
+			} else {
+				m.put(s, 1);
+			}
+		}
+
+		List<String> sList = new ArrayList<String>();
+
+		for (Map.Entry<String, Integer> entry : m.entrySet()) {
+			if (entry.getValue() == 1)
+				sList.add(entry.getKey());
+		}
+
+		return sList.toArray(new String[0]);
+	}
+
+	public static String decodeAtIndex(String s, int k) {
+
+		int len = 0;
+		Character c = null;
+		int lastCharIndex = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+
+			c = s.charAt(i);
+			len++;
+
+			if (c > '0' && c <= '9') {
+
+				len--;
+				int x = Character.getNumericValue(c);
+
+				if (len * x <= k) {
+					len *= x;
+					if (len == k) {
+						return Character.toString(s.charAt(lastCharIndex));
+					}
+				} else {
+					i = -1;
+				}
+			} else {
+				lastCharIndex = i;
+			}
+
+			if (len == k)
+				break;
+		}
+		return Character.toString(c);
+	}
+
+	public static int getColumnNo(String s) {
+
+		int c = 0;
+		int col = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+
+			c = s.charAt(i) - 'A' + 1;
+
+			if (i == 0)
+				col = c;
+			else {
+				col = c + col * 26;
+			}
+
+		}
+		return col;
 	}
 
 	private static void swap(int[] nums, int i, int j) {
-		
+
 		int temp = nums[i];
 		nums[i] = nums[j];
 		nums[j] = temp;
-		
+
 	}
 
 	public static int openLock(String[] deadends, String target) {
@@ -45,10 +169,10 @@ public class Solution {
 		end.add(target);
 		int level = 0;
 		while (!begin.isEmpty() && !end.isEmpty()) {
-			
+
 			System.out.println("===>begin " + begin);
 			System.out.println("===>  end " + end);
-			System.out.println(" " );
+			System.out.println(" ");
 			Set<String> temp = new HashSet<>();
 			for (String s : begin) {
 				if (end.contains(s))
@@ -61,10 +185,10 @@ public class Solution {
 					char c = sb.charAt(i);
 					String s1 = sb.substring(0, i) + (c == '9' ? 0 : c - '0' + 1) + sb.substring(i + 1);
 					String s2 = sb.substring(0, i) + (c == '0' ? 9 : c - '0' - 1) + sb.substring(i + 1);
-					
-					//System.out.println("s1 : " + s1);
-					//System.out.println("s2 : " + s2);
-					
+
+					// System.out.println("s1 : " + s1);
+					// System.out.println("s2 : " + s2);
+
 					if (!deads.contains(s1))
 						temp.add(s1);
 					if (!deads.contains(s2))
@@ -152,11 +276,15 @@ public class Solution {
 		root = new TrieNode();
 
 		for (int i = 0; i < strs.length; i++) {
-			if (strs[0] == "")
+			if (strs[i] == "")
 				return "";
 			insert(strs[i]);
 		}
 
+		if(hasMoreThanOneChild(root)) {
+			return "";
+		}
+		
 		return search(Character.toString(strs[0].charAt(0)));
 
 	}
@@ -209,7 +337,7 @@ public class Solution {
 
 	private static String longestPrefix(TrieNode t, String s) {
 
-		if (hasMoreThanOneChild(t)) {
+		if (hasMoreThanOneChild(t) || t.isWordEnd) {
 			return s;
 		}
 

@@ -17,7 +17,7 @@ public class TriTree {
 		t.insert("apple");
 		t.insert("Apples");
 
-		System.out.println(t.search("a"));
+		System.out.println(t.search("amazo"));
 
 	}
 

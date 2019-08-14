@@ -1,6 +1,8 @@
 package DesignPattern;
 
 public class DPTest {
+	
+	public final int a = 0;
 
 	public static void main(String[] args) {
 		new Child();
