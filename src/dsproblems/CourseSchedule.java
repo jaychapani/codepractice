@@ -2,6 +2,7 @@ package dsproblems;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class CourseSchedule {
 
@@ -13,7 +14,18 @@ public class CourseSchedule {
 		g.addEdge(0, 2);
 		g.addEdge(1, 2);
 
-		System.out.println(g.isCycle());
+		//System.out.println(g.isCycle());
+		
+		Graph g1 = new Graph(4); 
+		  
+		g1.addEdge(0, 1); 
+        g1.addEdge(0, 2); 
+        g1.addEdge(1, 2); 
+        g1.addEdge(2, 3); 
+        g1.addEdge(2, 0); 
+        g1.addEdge(3, 3);
+        
+        g1.DFS(2);
 	}
 }
 
@@ -71,6 +83,32 @@ class Graph {
 		recStack[i] = false;
 
 		return false;
+	}
+	
+	public void DFS(int s) {
+		
+		boolean visited[] = new boolean[v];
+		
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		visited[s] = true;
+		stack.push(s);
+		
+		while(stack.size() != 0) {
+			
+			s = stack.pop();
+			System.out.println(s);
+			
+			Iterator<Integer> it = adj[s].listIterator();
+			
+			while(it.hasNext()) {
+				int n = it.next();
+				if(!visited[n]) {
+					visited[n] = true;
+					stack.push(n);
+				}
+			}
+		}
 	}
 
 }

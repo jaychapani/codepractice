@@ -29,30 +29,29 @@ public class BTree {
 		root.left.right.left = new Node(10);
 		root.left.right.right = new Node(14);
 
-		// int a[] = new int[] { 2, 3, 4, 5, 6, 7, 1, 8 };
+		int a[] = new int[] { 3, 4, 5, 6, 7, 1, 8 };
 
-		// Node root1 = null;
+		Node root1 = new Node(2);
 
-		// for (int i = 0; i < a.length; i++) {
-		// root1 = insertBSTRec(root1, a[i]);
-		// }
+		for (int i = 0; i < a.length; i++) {
+			insertBST(root1, a[i]);
+		}
 
-		// printInorder(root1);
+		printInorder(root1);
 
-<<<<<<< HEAD
+
 		//printCousin(root, root.left.left);
-=======
+
 		// printCousin(root, root.left.left);
->>>>>>> branch 'master' of https://github.com/jaychapani/codepractice.git
 
 		// System.out.println(isMirror(root, root));
 
 		// printLevelOrder(root);
 
 		// System.out.println(height(root));
-		printKthSmallestElement(root,3);
+		//printKthSmallestElement(root,3);
 
-		btToDll(root);
+		//btToDll(root);
 		
 	}
 
@@ -86,7 +85,6 @@ public class BTree {
 		}
 
 		return head;
-<<<<<<< HEAD
 	}
 
 	private static int printKthSmallestElement(Node root, int k) {
@@ -109,8 +107,6 @@ public class BTree {
 		k = printKthSmallestElement(root.right, k);
 
 		return k;
-=======
->>>>>>> branch 'master' of https://github.com/jaychapani/codepractice.git
 	}
 
 	private static void printCousin(Node root, Node n) {
@@ -176,27 +172,25 @@ public class BTree {
 	private static void insertBST(Node root, int data) {
 
 		Node current = root;
-		Node parent;
-
+		
 		while (true) {
-			parent = current;
 			if (data <= current.data) {
 
-				current = current.left;
-
-				if (current == null) {
-					parent.left = new Node(data);
+				if (current.left == null) {
+					current.left = new Node(data);
 					return;
 				}
+				
+				current = current.left;
 
 			} else {
 
-				current = current.right;
-
-				if (current == null) {
-					parent.right = new Node(data);
+				if (current.right == null) {
+					current.right = new Node(data);
 					return;
 				}
+				
+				current = current.right;
 			}
 		}
 

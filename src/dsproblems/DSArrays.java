@@ -23,7 +23,7 @@ public class DSArrays {
 
 		// System.out.println(trap(new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 }));
 		
-		System.out.println(String.format("%02d",Integer.parseInt(Integer.toBinaryString(0))));
+		System.out.println(String.format("%02d",Integer.parseInt(Integer.toBinaryString(8))));
 
 		Stack<Integer> s = null;
 	}

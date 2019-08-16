@@ -58,13 +58,29 @@ class QuickSort {
 
 	// Driver program
 	public static void main(String args[]) {
-		int arr[] = { 1, 2, 4, 5, 3};
+		int arr[] = { 1, 8, 4, 2, 6, 9, 7, 45, 23, 11};
 		int n = arr.length;
 
-		QuickSort ob = new QuickSort();
-		ob.sort(arr, 0, n - 1);
+		//QuickSort ob = new QuickSort();
+		//ob.sort(arr, 0, n - 1);
 
+		int k = 3;
+		sort1(arr, n, k);
+		
 		System.out.println("sorted array");
 		printArray(arr);
+	}
+	
+	private static void sort1(int a[],int n, int k) {
+		int temp = -1;
+		for(int i = 0; i < k; i++) {
+			for(int j = i+1; j < n; j++) {
+				if(a[i] < a[j]) {
+					temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+				}
+			}
+		}
 	}
 }
