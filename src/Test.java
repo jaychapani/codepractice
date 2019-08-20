@@ -1,17 +1,48 @@
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class Test {
 
-	public static void main(String arg[]) {
+	public static void main(String arg[]) throws Exception {
 		// Person p = new Employee(); // upcasting
 		// p.walk();
-		System.out.println(steps(0, 0, 4, "M",1));
+		//System.out.println(steps(0, 0, 4, "M",1));
+		
+		int low = 0, high = 233;
+		for (int i = 0; i <= 9; i++)
+			bfs(low, high, i);
 		
 	}
 
+	public static void bfs(int low, int high, int num) {
+		Queue<Integer> q = new LinkedList<Integer>();
+		q.add(num);
+		while (!q.isEmpty()) {
+			int stepNum = q.poll();
+			if (stepNum <= high && stepNum >= low) {
+				System.out.print(stepNum + " ");
+			}
+			if (stepNum == 0 || stepNum > high)
+				continue;
+			int lastDigit = stepNum % 10;
+			int stepNumA = stepNum * 10 + (lastDigit - 1);
+			int stepNumB = stepNum * 10 + (lastDigit + 1);
+			if (lastDigit == 0)
+				q.add(stepNumB);
+			else if (lastDigit == 9)
+				q.add(stepNumA);
+			else {
+				q.add(stepNumA);
+				q.add(stepNumB);
+			}
+		}
+	}
+	
 	public static int steps(int source, int step, int dest, String str, int i) {
 		// base cases
 		System.out.println(i + " - source:" + source + " step:" + step + " dest:" + dest + " str:" + str);
