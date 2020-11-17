@@ -1,4 +1,4 @@
-package DesignPattern;
+package designpattern;
 
 public class DesignPatternTest {
 

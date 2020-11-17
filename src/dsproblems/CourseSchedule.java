@@ -1,5 +1,6 @@
 package dsproblems;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Stack;
@@ -20,12 +21,21 @@ public class CourseSchedule {
 		  
 		g1.addEdge(0, 1); 
         g1.addEdge(0, 2); 
-        g1.addEdge(1, 2); 
+        g1.addEdge(1, 3); 
         g1.addEdge(2, 3); 
-        g1.addEdge(2, 0); 
-        g1.addEdge(3, 3);
         
-        g1.DFS(2);
+        g1.DFS(0);
+        
+        int numCourses = 3;
+        int[][] prerequisites = {{0,1},{1,0},{1,2}};
+        
+        Graph g2 = new Graph(numCourses);
+        
+        for(int i = 0; i < prerequisites.length; i++) {
+            g2.addEdge(prerequisites[i][1],prerequisites[i][0]);
+        }
+        
+        System.out.println("---" + Arrays.toString(g2.topologicalSort()));
 	}
 }
 
@@ -110,5 +120,44 @@ class Graph {
 			}
 		}
 	}
+	
+	public int[] topologicalSort(){
+        Stack<Integer> stack = new Stack<Integer>();
+        boolean[] visited = new boolean[v];
+        
+        for(int i = 0; i < v; i++){
+            if(!topologicalSortUtil(i, visited, stack,new boolean[v]))
+            	return new int[0];
+        }
+        
+        int[] arr = new int[v];
+        int j = 0;
+        
+        while(!stack.empty()){
+            arr[j++] = Integer.parseInt((new Integer(stack.pop()).toString()));
+        }
+        
+        return arr;
+    }
+    
+    public boolean topologicalSortUtil(int i, boolean[] visited, Stack<Integer> stack, boolean[] isLoop){
+        
+    	if(visited[i])
+    		return true;
+    	if(isLoop[i])
+    		return false;
+    	
+        isLoop[i] = true;
+        
+        Iterator<Integer> it = adj[i].listIterator();
+        while(it.hasNext()){
+            int x = it.next();
+            if(!topologicalSortUtil(x,visited,stack,isLoop))
+            	return false;
+        }
+        visited[i] = true;
+        stack.push(new Integer(i));
+        return true;
+    }
 
 }

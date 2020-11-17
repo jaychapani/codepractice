@@ -1,4 +1,4 @@
-package DesignPattern;
+package designpattern;
 
 public interface Employee {
 

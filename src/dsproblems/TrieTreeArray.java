@@ -2,6 +2,10 @@ package dsproblems;
 
 public class TrieTreeArray {
 
+	public enum SearchType{
+		LONG_PREFIX,SMART_SUGGEST
+	};
+	
 	public final static int ALFA_SIZE = 26;
 
 	static class TrieNode {
@@ -65,7 +69,7 @@ public class TrieTreeArray {
 		return false;
 	}
 
-	private static void search(String s) {
+	private static void search(String s, SearchType st) {
 
 		TrieNode t = searchNode(s);
 
@@ -74,25 +78,29 @@ public class TrieTreeArray {
 			return;
 		}
 
-		// smartSuggest(t, s);
+		if(st.equals(SearchType.SMART_SUGGEST))
+			smartSuggest(t, s);
 		
-		longestPrefix(t, s);
+		if(st.equals(SearchType.LONG_PREFIX))
+			longestPrefix(t, s);
 
 	}
 
-	private static void longestPrefix(TrieNode t, String s) {
+	private static boolean longestPrefix(TrieNode t, String s) {
 
 		if (hasMoreThanOneChild(t)) {
 			System.out.println(s);
-			return;
+			return false;
 		}
 
 		for (int i = 0; i < ALFA_SIZE; i++) {
 			if (t.children[i] != null) {
-				longestPrefix(t.children[i], s + Character.toString((char) (i + 'a')));
+				if(!longestPrefix(t.children[i], s + Character.toString((char) (i + 'a'))))
+					return true;
 			}
 		}
 
+		return true;
 	}
 
 	private static void smartSuggest(TrieNode t, String s) {
@@ -162,7 +170,7 @@ public class TrieTreeArray {
 
 	public static void main(String[] args) {
 
-		String keys[] = { "flow","flower","flag" };
+		String keys[] = { "flow","flower","flag","floss","flag" };
 
 		root = new TrieNode();
 
@@ -170,9 +178,17 @@ public class TrieTreeArray {
 			insert(keys[i]);
 		}
 
-		search(Character.toString(keys[0].charAt(0)));
+		//longestPrefix
+		search(Character.toString(keys[0].charAt(0)), SearchType.LONG_PREFIX);
+		
+		System.out.println("------------------------");
+		
+		//smart suggest
+		search("flo", SearchType.SMART_SUGGEST);
+		
+		System.out.println("------------------------");
 
-		// System.out.println(maxCount(root, "").toString());
+		System.out.println(maxCount(root, "").toString());
 	}
 
 }

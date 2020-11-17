@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 class Node {
 	int data;
 	Node left, right;
@@ -18,11 +20,14 @@ public class BTree {
 
 	public static void main(String[] args) {
 
-		Node root = new Node(20);
+		Node root = new Node(-10);
 
-		root.left = new Node(8);
-		root.right = new Node(22);
-		root.left.left = new Node(4);
+		root.left = new Node(9);
+		root.right = new Node(20);
+		root.right.right = new Node(14);
+		System.out.println("--->" + maxPathSum(root));
+		
+		/*root.left.left = new Node(4);
 		root.left.right = new Node(12);
 		root.left.right.left = new Node(10);
 		root.left.right.right = new Node(14);
@@ -35,7 +40,7 @@ public class BTree {
 			insertBST(root1, a[i]);
 		}
 
-		printInorder(root1);
+		printInorder(root1); */
 
 
 		//printCousin(root, root.left.left);
@@ -54,6 +59,21 @@ public class BTree {
 	}
 
     static Node head  = null;
+    
+    static int maxValue;
+    public static int maxPathSum(Node root) {
+    	maxValue = Integer.MIN_VALUE;
+        sumUtil(root);
+        return maxValue;
+    }
+    
+    private static int sumUtil(Node node){
+    	if (node == null) return 0;
+        int left = Math.max(0, sumUtil(node.left));
+        int right = Math.max(0, sumUtil(node.right));
+        maxValue = Math.max(maxValue, left + right + node.data);
+        return Math.max(left, right) + node.data;
+    }
 	
 	private static Node btToDll(Node root) {
 
